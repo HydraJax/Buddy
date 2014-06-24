@@ -1,0 +1,25 @@
+<p>
+    <strong>Name:</strong><%= @event.event_name %>
+    <strong>Description:</strong> <%= @event.description %>
+    <strong>Date:</strong><%= @event.date %>
+    <strong>Time:</strong><%= @event.time %>
+    <strong>Address:</strong><%= @event.address %><p></p><br>
+
+    <%=image_tag("http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@event.latitude}%2C#{@event.longitude}")%>
+</p>
+
+
+<%= link_to 'Back', events_path %>
+<br>
+ 
+<%  current_user.events.each do |event| %>
+<%= event.event_name  %>
+<%= link_to "Edit", edit_event_path(event) %>
+<%= link_to 'Delete', event, method: :delete, data:{confirm: "Are you Certain"} %>
+<br>
+<% end %>
+
+<%= link_to 'Back', events_path %>
+
+
+
