@@ -55,7 +55,6 @@ group :development do
   gem 'awesome_print'
   gem 'pry-rails'
   gem 'pry-byebug'
-  gem 'forgery', '0.6.0'
 end
 
 group :development, :test do
