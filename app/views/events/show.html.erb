@@ -1,25 +1,36 @@
-<p>
-    <strong>Name:</strong><%= @event.event_name %>
-    <strong>Description:</strong> <%= @event.description %>
-    <strong>Date:</strong><%= @event.date %>
-    <strong>Time:</strong><%= @event.time %>
-    <strong>Address:</strong><%= @event.address %><p></p><br>
+<div class="results">
+  <div class="map_event">
+    <p >
+         NAME: : <%= @event.event_name %><br>
+         DESCRIPTION: : <%= @event.description %><br>
+         DATE: : <%= @event.date %><br>
+         TIME: : <%= @event.time %><br>
+         ADDRESS: : <%= @event.address %><br>
+  </div>
+    <div class="map">
+        <%=image_tag("http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@event.latitude}%2C#{@event.longitude}")%>
+    </p>
+    </div>
 
-    <%=image_tag("http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@event.latitude}%2C#{@event.longitude}")%>
-</p>
+    <br>
+    <div class="bottom_links">
+      <h5 class = "bottom_links">Your Events List</h5>
+      <%  current_user.events.each do |event| %>
+      <%= event.event_name  %>
+      <%= link_to "Edit", edit_event_path(event) %>
+      <%= link_to 'Delete', event, method: :delete, data:{confirm: "Are you Certain"} %>
+      <br>
+      <% end %>
 
+     
 
-<%= link_to 'Back', events_path %>
-<br>
- 
-<%  current_user.events.each do |event| %>
-<%= event.event_name  %>
-<%= link_to "Edit", edit_event_path(event) %>
-<%= link_to 'Delete', event, method: :delete, data:{confirm: "Are you Certain"} %>
-<br>
-<% end %>
-
-<%= link_to 'Back', events_path %>
+    </div>
+</div>  
+      <div class="button_box">
+        <div class="back">
+         <%= link_to 'Back', events_path %>
+        </div>
+      </div>
 
 
 

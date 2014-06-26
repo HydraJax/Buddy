@@ -1,42 +1,69 @@
-<%= paginate @events %>
 
-<%= link_to("New Event", new_event_path) %>
+<div class = "banner">
+  <h2 id="header">Play Pal</h2>
+</div>
 
-<%= link_to("My Events", my_events_path) %>
+<hr class = "front_page">
 
-<% if current_user %>
-  <% @events.each do |event| %>
-      <%= render partial: 'event', locals: {event:event} %>
-        <br>
-        <% if current_user && event.event_users.where(user_id:current_user.id).first %>
+<div class= "splash">Welcome to Play Pal.  This website was designed for the busy workout enthusiast.  Once you sign up or sign in you can create or join workout groups and events.
+</div>
 
-            <%=link_to("map", event_path(event))%>
+<div class="wrapper">
 
-            <h3>You have joined this group</h3>
-            
-        <% else %>
+  <div id="event_header">Here is a list of current events. Join an event, create an event or see a list of all your upcoming events by clicking one of the available buttons.
+   </div>
 
-              <%= form_for event.event_users.new do |f| %>
-              <%= f.hidden_field :event_id, value: event.id %>
-              <%= f.submit "JOIN GROUP" %>
-              <% end %>
+  <%= paginate @events %>
+      <div class="event_buttons">
+        <div class = "center"></div>
+         <div id="new_event_button"><%= link_to("Make An Event", new_event_path) %></div> 
+              <div></div>
+          <div id="my_event_button"> <%= link_to("See Your Events", my_events_path) %></div>
+          <div></div>
+      </div>
+  <% if current_user %>
+    <% @events.each do |event| %>
+        <%= render partial: 'event', locals: {event:event} %>
+          <br>
+          <% if current_user && event.event_users.where(user_id:current_user.id).first %>
 
+              <%=link_to("Event Map", event_path(event))%>
+
+              <h3>You have joined this group</h3>
+              <hr id="event_border">
+          <% else %>
+
+                <%= form_for event.event_users.new do |f| %>
+                <%= f.hidden_field :event_id, value: event.id %>
+                <h5>There are <%=event.users.length %>  going</h5>
+                <%= f.submit " JOIN ", class: 'button' %>
+
+                <% end %>
+                <hr id="event_border">
+          <% end %>
+ 
+    <% end %>  
+      <div class="event_buttons">
+        <div id="new_event_button"><%= link_to("Make An Event", new_event_path) %></div> 
+        <div id="my_event_button"><%= link_to("See Your Events", my_events_path) %></div>
+      </div>    
+  <% else %> 
+        <h3>Please Sign in to Join an Event</h3>
+
+        <% @events.each do |event| %>
+        EVENT: <%=event.event_name %><br>
+        DESCRIPTION: <%=event.description %><br>
+        DATE: <%=event.date %><br>
+        TIME: <%=event.time %><br>
+        DIFFICULTY: <%=event.difficulty %><br>
+        <hr id="event_border">
         <% end %>
-          
-          <%= link_to("New Event", new_event_path) %>
-          <%= link_to("My Events", my_events_path) %>
-  <% end %>      
-<% else %> 
-      <h3>Please Sign in to Join an Event</h3>
+  <% end %>
+</div>
 
-      <% @events.each do |event| %>
-      Workout: <%=event.event_name %>
-      Description: <%=event.description %><br>
-      Date: <%=event.date %>
-      Time: <%=event.time %>
-      Dificulty: <%=event.difficulty %>
-      <% end %>
-<% end %>
+
+  
+
 
 
 
