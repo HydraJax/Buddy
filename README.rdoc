@@ -1,28 +1,7 @@
-== README
+Welcome to Play Pal.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app is a general template application for group interaction.  The app focuses on the fact that joining groups or creating groups to join is fundamental.
 
-Things you may want to cover:
+Basically there are 3 models: users, events, and RSVP (which functions as the join table).
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+The app is intuitive and does not need a nav bar for the very bare bones functioning. 
