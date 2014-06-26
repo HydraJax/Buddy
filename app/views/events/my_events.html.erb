@@ -1,14 +1,23 @@
-<h2><strong>My Events</strong></h2>
 
-<tbody>
-  <% @events.each do |event| %>
-      
-    <%= render partial: "event", locals:{event: event} %>
-      
-    <br><%= link_to 'Edit', edit_event_path(event) %>
-    <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %><br>
-        
-  <% end %>
-  <div><br><%= link_to 'All Workouts', events_path %></div>
+<div class="results">
+
+  <h2>My Events</h2>
+
   
-</tbody>
+    <% @events.each do |event| %>
+        
+      <%= render partial: "event", locals:{event: event} %>
+    <div class="bottom_links">
+      <br><%= link_to 'Edit', edit_event_path(event) %>
+      <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %><br>
+    </div>
+          
+    <% end %>
+</div>
+  <div class="button_box">
+    <div class="back">
+      <%= link_to 'All Workouts', events_path %>
+    </div>
+  </div>
+    
+  
